@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#Source configuration file
+source /etc/nfeed/nfeed.conf
+
+python $NFEEDDIR/nfeed-redis.py -u $URLLIST -t $SEARCHTERMLIST
+

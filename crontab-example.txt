@@ -1,0 +1,3 @@
+#crontab example, every 5 minutes:
+
+5 * * * * nfeed-cron

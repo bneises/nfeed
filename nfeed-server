@@ -1,0 +1,7 @@
+#!/bin/sh
+
+#Source configuration file
+source /etc/nfeed/nfeed.conf
+
+echo connect to $HOSTNAME:$TORNADOSERVERPORT$TORNADOSERVERURL
+python rss-tornado.py -p $TORNADOSERVERPORT -u $TORNADOSERVERURL&
