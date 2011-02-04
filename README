@@ -8,29 +8,39 @@ INSTALL
 For now, all the install does is copy etc/nfeed to /etc/nfeed so there is
 atleast a central configuration file.
 
+
 Dependancies you must work out on your own:
 
 
 Redis server version 2.0.4
 ----------
+yum install git
 yum install redis
 apt-get install redis-server
-
-
-
-tornado python web framework and server
-----------
 easy_install tornado
+easy_install redis
 
+git clone git://github.com/petekalo/nfeed.git
+cd nfeed
+./install.sh
+
+CONFIGURE:
+----------
+After installation, edit /etc/nfeed/nfeed.conf
+
+Make sure you update the installation directory/path, otherwise
+nothing will work.
 
 
 USAGE:
+----------
+With redis server running
 
-with redis server running
-
-create a cronjob for nfeed-cron
+create a cronjob for nfeed-cron, there is an example
 
 then
 ./nfeed-server
+
+init scripts to come
 
 
