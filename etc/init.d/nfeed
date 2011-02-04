@@ -11,9 +11,10 @@
 # Source function library.
 . /etc/init.d/functions
 
-# Source networking configuration.
+# Source configuration.
+source /etc/nfeed/nfeed.conf
 
-prog=nfeed
+prog=nfeed-cron
 lockfile=/var/lock/subsys/$prog
 
 start() {
@@ -21,7 +22,7 @@ start() {
 
 	# Start daemon.
 	echo -n $"Starting $prog: "
-	daemon $prog -u ntp:ntp -p /var/run/nfeed.pid 
+	daemon $NFEEDDIR/nfeed-cron
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch $lockfile
