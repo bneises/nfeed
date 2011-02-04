@@ -43,7 +43,7 @@ class GenerateFeed(tornado.web.RequestHandler):
                                        You have been notified by <a href="http://code.google.com/p/notifeed">Notifeeder!</a></description>""" % theterm)
             self.write("<guid><![CDATA[%s]]></guid>" % theid)
             self.write("</item>")
-            self.write('</channel></rss>')
+        self.write('</channel></rss>')
 
 
 class MainHandler(tornado.web.RequestHandler):
