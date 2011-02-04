@@ -21,12 +21,12 @@ class GenerateFeed(tornado.web.RequestHandler):
             self.write("""<?xml version="1.0" encoding="UTF-8" ?>
                                        <rss version="2.0">
                                        <channel>
-                                       <title>Notifeeder</title>
-                                       <link>http://code.google.com/p/notifeed</link>
+                                       <title>nFeed</title>
+                                       <link>http://github.com/petekalo/nfeed</link>
                                        <description>searching some stuff</description>
                                        <language>en-us</language>""")
       #self.write('<pubDate>%s</pubDate>' % thetime)
-            self.write('<generator>Freaking Manual Labor 1.0</generator>') 
+            self.write('<generator>various and sundry</generator>') 
             self.write('<ttl>10</ttl>')
       
         for item in results:
@@ -40,7 +40,8 @@ class GenerateFeed(tornado.web.RequestHandler):
             self.write("<link><![CDATA[%s]]></link>" % thelink)
             self.write("""<description xml:space='preserve'><br/>Your search 
                                        term was "<![CDATA[%s]]>" <br/><br/>
-                                       You have been notified by <a href="http://code.google.com/p/notifeed">Notifeeder!</a></description>""" % theterm)
+                                       You have been notified by <a
+href="http://github.com/petekalo/nfeed">nFeed!</a></description>""" % theterm)
             self.write("<guid><![CDATA[%s]]></guid>" % theid)
             self.write("</item>")
         self.write('</channel></rss>')
