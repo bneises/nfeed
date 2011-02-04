@@ -1,9 +1,21 @@
 import time
 import redis
+from optparse import OptionParser
 
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
+
+
+def get_args():
+    parser = OptionParser(description='Example: python rss-tornade.py -u /foo -p 80')
+    parser.add_option('-u', '--url', dest='url', default='/rss',
+                         help='Url to serve RSS page')
+    parser.add_option('-p', '--port', dest='port', default=80,
+                         help='Port for http server to listen on')
+    args = parser.parse_args()
+    return args
+
 
 class GenerateFeed(tornado.web.RequestHandler):
       def get(self):
@@ -51,11 +63,16 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello, world")
 
-application = tornado.web.Application([
-    (r"/rss", GenerateFeed),
-])
+#application = tornado.web.Application([
+#    (r"%s" % url, GenerateFeed),
+#])
 
 if __name__ == "__main__":
+    args = get_args()[0]
+    port = args.port
+    url = args.url
+    application = tornado.web.Application([
+                (r"%s" % url, GenerateFeed),])
     http_server = tornado.httpserver.HTTPServer(application)
-    http_server.listen(8080)
+    http_server.listen(int(port))
     tornado.ioloop.IOLoop.instance().start()
