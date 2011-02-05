@@ -5,7 +5,7 @@ source /etc/nfeed/nfeed.conf
 
 while true
 	do
-	echo Started nFeed cron $$ on `date` >> $LOG
+	echo Started  nFeed cron $$ on `date` >> $LOG
 	python $NFEEDDIR/nfeed-redis.py -u $URLLIST -t $SEARCHTERMLIST >> $LOG &
 	echo Finished nFeed cron $$ on `date` >> $LOG
 	sleep $SLEEPVAL
