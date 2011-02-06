@@ -2,6 +2,6 @@
 
 #Source configuration file
 source /etc/nfeed/nfeed.conf
-
 echo connect to $HOSTNAME:$TORNADOSERVERPORT$TORNADOSERVERURL
-python rss-tornado.py -p $TORNADOSERVERPORT -u $TORNADOSERVERURL&
+python $NFEEDDIR/rss-tornado.py -p $TORNADOSERVERPORT -u $TORNADOSERVERURL
+exit 0

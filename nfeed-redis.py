@@ -58,8 +58,8 @@ if __name__ == '__main__':
     results = x.entry_popper()
     if results:
         r = redis.Redis("localhost")
-#        total_items = len(results['items'])
-#        broken_feed_total = len(results['brokenfeeds'])
+        total_items = len(results['items'])
+        broken_feed_total = len(results['brokenfeeds'])
         for item in results['items']:
             if not r.exists('item:%s' % item['id']):
                 r.hmset('item:%s' % item['id'], item)  
@@ -67,8 +67,7 @@ if __name__ == '__main__':
 #            print 'hits: %s %s %s %s \n' % (item['searchterm'], item['title'], item['link'], item['id'])
 #        for broken in results['brokenfeeds']:
 #            print 'brokenfeeds: ' + broken
-#        print 'total items: %s' % total_items
-#        print 'total brokenfeeds: %s' % broken_feed_total
+        print 'total items: %s           total brokenfeeds: %s' % (total_items, broken_feed_total)
 #    else:
 #        print 'no data'
     

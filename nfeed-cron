@@ -3,11 +3,12 @@
 #Source configuration file
 source /etc/nfeed/nfeed.conf
 
+DATE="%T_%m-%d-%y"
+
 while true
 	do
-	echo Started  nFeed cron $$ on `date` >> $LOG
-	python $NFEEDDIR/nfeed-redis.py -u $URLLIST -t $SEARCHTERMLIST >> $LOG &
-	echo Finished nFeed cron $$ on `date` >> $LOG
+	echo "Started  nFeed job $$ on `date +$DATE`" >> $LOG
+	TEMP=`python $NFEEDDIR/nfeed-redis.py -u $URLLIST -t $SEARCHTERMLIST` && echo -e "Finished nFeed job $$ on `date +$DATE` \n$TEMP\n" >> $LOG || echo error on `date +$DATE` >> $LOG
 	sleep $SLEEPVAL
 	done&
 exit 0

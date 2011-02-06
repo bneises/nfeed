@@ -1,4 +1,4 @@
-work in progress
+INTRO:
 
 
 
@@ -13,10 +13,13 @@ Dependancies you must work out on your own:
 
 
 Redis server version 2.0.4
+Tornado python web server
+
 ----------
-yum install git
-yum install redis
-apt-get install redis-server
+
+for Fedora 14:
+
+yum install git redis python-setuptools -y
 easy_install tornado
 easy_install redis
 
@@ -36,11 +39,14 @@ USAGE:
 ----------
 With redis server running
 
-create a cronjob for nfeed-cron, there is an example
+chkconfig nfeed-cron on     <-- sets up job as a service in runlevels 2345
+service nfeed-cron start
+logs to /var/log/nfeed.log
 
-then
-./nfeed-server
-
-init scripts to come
+./nfeed-server& 	    <-- will run tornado http server in background
 
 
+TODO:
+
+Write web programming for WSGI, tornado is temporary
+write an upstart script for nfeed-cron
